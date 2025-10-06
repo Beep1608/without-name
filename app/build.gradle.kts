@@ -19,6 +19,9 @@ repositories {
 dependencies {
     // Use JUnit test framework.
     testImplementation(libs.junit)
+    implementation("com.opencsv:opencsv:5.12.0")
+    implementation("tech.tablesaw:tablesaw-core:0.44.4")
+    implementation("tech.tablesaw:tablesaw-jsplot:0.44.4")
 
     // This dependency is used by the application.
     implementation(libs.guava)

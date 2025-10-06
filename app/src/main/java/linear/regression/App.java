@@ -3,28 +3,52 @@
  */
 package linear.regression;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.bean.CsvToBeanBuilder;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import linear.regression.data.FirstBean;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.plotly.Plot;
+import tech.tablesaw.plotly.api.ScatterPlot;
+import tech.tablesaw.plotly.components.Figure;
+
+import java.io.*;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.List;
 
 public class App extends Application {
     public String getGreeting() {
         return "Hello World!";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        System.out.println("Hola");
-        launch(args);
+        //List<FirstBean> beans = new CsvToBeanBuilder<FirstBean>(new FileReader("C:\\Users\\fidel\\Documents\\AI\\Java\\idk\\app\\src\\main\\resources\\data_for_lr.csv"))
+        //        .withType(FirstBean.class).build().parse();
+//
+        Table t = Table
+                .read()
+                .file(
+                        new File("C:\\Users\\fidel\\Documents\\AI\\Java\\idk\\app\\src\\main\\resources\\data_for_lr.csv")
+                );
+
+
+        Figure f = ScatterPlot.create("Miau", t, "x","y");
+        Plot.show(f);
+
     }
 
     @Override
     public void start(Stage stage) throws Exception {
+        //ReaderCSV reader = new ReaderCSV(new File("C:\\Users\\fidel\\Downloads\\data_for_lr.csv"),",");
+        //reader.printData();
 
-        LinearRegresion regresion = new LinearRegresion();
-
-        Scene scene = new Scene(regresion);
+        Scene scene = new Scene(new Label("Minion"));
 
         stage.setScene(scene);
         stage.setMaximized(true);
